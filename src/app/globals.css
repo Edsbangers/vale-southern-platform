@@ -1,26 +1,138 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Vale Southern Enterprise Palette */
+  --vale-navy: #002147;
+  --vale-navy-dark: #001530;
+  --vale-navy-light: #003366;
+  --vale-slate: #707070;
+  --vale-slate-light: #9a9a9a;
+  --vale-slate-dark: #505050;
+  --vale-white: #ffffff;
+  --vale-off-white: #f8f9fa;
+  --vale-gold: #c5a572;
+  --vale-gold-light: #d4ba8f;
+  --vale-success: #10b981;
+  --vale-warning: #f59e0b;
+  --vale-error: #ef4444;
+
+  --background: var(--vale-white);
+  --foreground: var(--vale-navy);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-vale-navy: var(--vale-navy);
+  --color-vale-navy-dark: var(--vale-navy-dark);
+  --color-vale-navy-light: var(--vale-navy-light);
+  --color-vale-slate: var(--vale-slate);
+  --color-vale-slate-light: var(--vale-slate-light);
+  --color-vale-gold: var(--vale-gold);
+  --color-vale-gold-light: var(--vale-gold-light);
+  --color-vale-success: var(--vale-success);
+  --color-vale-warning: var(--vale-warning);
+  --color-vale-error: var(--vale-error);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Corporate scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vale-off-white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vale-slate-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vale-slate);
+}
+
+/* Smooth animations */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Corporate card hover effect */
+.corporate-card {
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 33, 71, 0.1);
+}
+
+.corporate-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 33, 71, 0.15);
+}
+
+/* Concierge Agent animations */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+}
+
+.agent-pulse {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Typing indicator */
+@keyframes typing-dot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+.typing-dot:nth-child(1) { animation: typing-dot 1s ease-in-out infinite; }
+.typing-dot:nth-child(2) { animation: typing-dot 1s ease-in-out 0.2s infinite; }
+.typing-dot:nth-child(3) { animation: typing-dot 1s ease-in-out 0.4s infinite; }
+
+/* Status badge pulse */
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.status-live {
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* Golden Thread accent line */
+.golden-thread {
+  background: linear-gradient(90deg, var(--vale-gold) 0%, var(--vale-gold-light) 50%, var(--vale-gold) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
